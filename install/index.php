@@ -104,6 +104,15 @@ you are certain you need to change it.
 		<table>
 			<tr>
 				<td>
+					<label for="textfield"><strong>Database Name:</strong> 
+				</td>
+				<td>
+					</label> <input class="inputbox" value="raspberrypints" name="dbname">				
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<td>
 					<label for="textfield"><strong>Database Username:</strong> 
 				</td>
 				<td>

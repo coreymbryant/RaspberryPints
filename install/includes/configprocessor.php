@@ -14,6 +14,7 @@ require_once __DIR__.'/sql_parse.php';
 //Process and load form data
 $servername = $_POST["servername"];
 $rootpass = $_POST["rootpass"];
+$dbname = $_POST["dbname"];
 $dbuser = $_POST["dbuser"];
 $dbpass1 = $_POST["dbpass1"];
 $dbpass2 = $_POST["dbpass2"];
@@ -89,7 +90,7 @@ if ($validerror !='')
 // CLEAR INSTALLATION DATA ROUTINES
 if ($action == 'remove')
 {
-	echo "Deleting raspberrypints database...";
+	echo "Deleting " . $dbname . " database...";
 	flush();
 	$con=mysqli_connect($servername,"root",$rootpass);
 	// Check connection
@@ -99,7 +100,7 @@ if ($action == 'remove')
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	$sql = "DROP database raspberrypints;";
+	$sql = "DROP database $dbname;";
 	$result = mysqli_query($con,$sql);
 	mysqli_close($con);
 	echo "Success!<br>";
@@ -145,6 +146,24 @@ require_once __DIR__.'/config_files.php';
 	
 	echo "Success!<br>";
 	flush();
+
+	//-----------------Create RPints Database----------------------
+	echo "Creating RPints database...";
+	flush();
+	$con=mysqli_connect($servername,"root",$rootpass);
+	// Check connection
+
+	if (mysqli_connect_errno())
+	{
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+
+	$sql = "CREATE DATABASE IF NOT EXISTS `" . $dbname . "` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;";
+	$result = mysqli_query($con,$sql);
+	mysqli_close($con);
+	echo "Success!<br>";
+	flush();
+
 	//-----------------Create RPints User--------------------------
 	echo "Creating RPints database user...";
 	flush();
@@ -175,7 +194,7 @@ require_once __DIR__.'/config_files.php';
 	$sql_query = split_sql_file($sql_query, ';');
 
 
-	$con=mysqli_connect($servername,'root',$rootpass) or die('error connection');
+	$con=mysqli_connect($servername,'root',$rootpass,$dbname) or die('error connection');
 
 	$i=1;
 	foreach($sql_query as $sql){
@@ -192,7 +211,7 @@ require_once __DIR__.'/config_files.php';
 	//-----------------Add the admin user to the Users DB----------
 	echo "Adding new admin user...";
 	flush();
-	$con=mysqli_connect($servername,"root",$rootpass,"raspberrypints");
+	$con=mysqli_connect($servername,"root",$rootpass,$dbname);
 	// Check connection
 
 	if (mysqli_connect_errno())
@@ -236,7 +255,7 @@ require_once __DIR__.'/config_files.php';
 			$sql_query = split_sql_file($sql_query, ';');
 
 
-			$con=mysqli_connect($servername,'root',$rootpass) or die('error connection');
+			$con=mysqli_connect($servername,'root',$rootpass,$dbname) or die('error connection');
 
 			$i=1;
 			foreach($sql_query as $sql){
