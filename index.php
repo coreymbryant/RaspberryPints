@@ -15,7 +15,7 @@
 	$db = true;
 	
 	// Setup array for all the beers that will be contained in the list
-	$beers = array();
+	$taps = array();
 	
 	if($db){
 		// Connect to the database
@@ -38,17 +38,17 @@
 				"beername" => $b['name'],
 				"style" => $b['style'],
 				"notes" => $b['notes'],
-				"og" => $b['ogAct'],
-				"fg" => $b['fgAct'],
-				"srm" => $b['srmAct'],
-				"ibu" => $b['ibuAct'],
+				"og" => $b['ogEst'],
+				"fg" => $b['fgEst'],
+				"srm" => $b['srmEst'],
+				"ibu" => $b['ibuEst'],
 				"startAmount" => $b['startAmount'],
 				"amountPoured" => $b['amountPoured'],
 				"remainAmount" => $b['remainAmount'],
 				"tapNumber" => $b['tapNumber'],
 				"srmRgb" => $b['srmRgb']
 			);
-			$beers[$b['tapNumber']] = $beeritem;
+			$taps[$b['tapNumber']] = $beeritem;
 		}
 		
 		$tapManager = new TapManager();
@@ -145,8 +145,8 @@
 				</thead>
 				<tbody>
 					<?php for($i = 1; $i <= $numberOfTaps; $i++) {
-						if( isset($beers[$i]) ) {
-							$beer = $beers[$i];
+						if( isset($taps[$i]) ) {
+							$beer = $taps[$i];
 					?>
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>" id="<?php echo $beer['id']; ?>">
 								<?php if($config[ConfigNames::ShowTapNumCol]){ ?>

@@ -9,18 +9,15 @@ require_once __DIR__.'/includes/html_helper.php';
 require_once __DIR__.'/includes/functions.php';
 
 require_once __DIR__.'/includes/models/tap.php';
-require_once __DIR__.'/includes/models/beer.php';
 require_once __DIR__.'/includes/models/keg.php';
 require_once __DIR__.'/includes/models/kegType.php';
 
-require_once __DIR__.'/includes/managers/beer_manager.php';
 require_once __DIR__.'/includes/managers/keg_manager.php';
 require_once __DIR__.'/includes/managers/kegType_manager.php';
 require_once __DIR__.'/includes/managers/tap_manager.php';
 
 $htmlHelper = new HtmlHelper();
 $tapManager = new TapManager();
-$beerManager = new BeerManager();
 $kegManager = new KegManager();
 $kegTypeManager = new KegTypeManager();
 
@@ -35,9 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-$beerList = $beerManager->GetAllActive();
-$kegList = $kegManager->GetAllAvailable();
-
+$kegList = $kegManager->GetAllAvailable(); 
 $tapNumber = $_GET['tapNumber'];
 if( isset($_GET['id'])){
 	$tap = $tapManager->GetById($_GET['id']);
@@ -104,46 +99,6 @@ include 'header.php';
 		<input type="hidden" name="active" value="<?php echo $tap->get_active() ?>" />
 		
 		<table width="800" border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td width="25%" style="vertical-align:middle;">
-					<b>Beer Name: <font color="red">*</font></b>
-				</td>
-				<td>
-					<?php echo $htmlHelper->ToSelectList("beerId", $beerList, "name", "id", $tap->get_beerId(), "Select One"); ?>
-				</td>
-			</tr>
-			<tr>
-				<td style="vertical-align:middle;">
-					<b>Color</b> (SRM): <b><font color="red">*</font></b>
-				</td>
-				<td>
-					<input type="text" id="srm" class="mediumbox" name="srm" value="<?php echo $tap->get_srm() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td style="vertical-align:middle;">
-					<b>Bitterness</b> (IBU): <b><font color="red">*</font></b>
-				</td>
-				<td>
-					<input type="text" id="ibu" class="mediumbox" name="ibu" value="<?php echo $tap->get_ibu() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td style="vertical-align:middle;">
-					<b>OG</b> (SG): <b><font color="red">*</font></b>
-				</td>
-				<td>
-					<input type="text" id="og" class="mediumbox" name="og" value="<?php echo $tap->get_og() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td style="vertical-align:middle;">
-					<b>FG</b> (SG): <b><font color="red">*</font></b>
-				</td>
-				<td>
-					<input type="text" id="fg" class="mediumbox" name="fg" value="<?php echo $tap->get_fg() ?>" />
-				</td>
-			</tr>
 			<tr>
 				<td style="vertical-align:middle;">
 					<b>Keg Number: <font color="red">*</font></b>
@@ -223,12 +178,6 @@ include 'scripts.php';
 	
 <script>
 	$(function() {
-		var beerList = { 
-			<?php foreach($beerList as $beerItem){ 
-				echo $beerItem->get_id() . ": " . $beerItem->toJson() . ", "; 
-			} ?>
-		};
-		
 		var kegList = { 
 			<?php foreach($kegList as $keg){ 
 				echo $keg->get_id() . ": { " . 
@@ -238,20 +187,6 @@ include 'scripts.php';
 		};
 		
 		$('#tap-form')	
-			.on('change', '#beerId', function(){
-				var $this = $(this);
-				
-				if( $this.val() ){
-					var $form = $('#tap-form'),
-						beer = beerList[$this.val()];
-						
-					$form
-						.find('#srm').val(beer['srm']).end()
-						.find('#ibu').val(beer['ibu']).end()
-						.find('#og').val(beer['og']).end()
-						.find('#fg').val(beer['fg']).end();
-				}
-			})
 			.on('change', '#kegId', function(){
 				var $this = $(this);
 				
@@ -266,11 +201,6 @@ include 'scripts.php';
 		
 		$('#tap-form').validate({
 		rules: {
-			beerId: { required: true },
-			srm: { required: true, number: true },
-			ibu: { required: true, number: true },
-			og: { required: true, number: true },
-			fg: { required: true, number: true },
 			kegId: { required: true },
 			startAmount: { required: true, number: true }
 		}

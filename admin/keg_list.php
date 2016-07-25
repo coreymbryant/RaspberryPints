@@ -12,15 +12,18 @@ require_once __DIR__.'/includes/functions.php';
 require_once __DIR__.'/includes/models/keg.php';
 require_once __DIR__.'/includes/models/kegType.php';
 require_once __DIR__.'/includes/models/kegStatus.php';
+require_once __DIR__.'/includes/models/beer.php';
 
 require_once __DIR__.'/includes/managers/keg_manager.php';
 require_once __DIR__.'/includes/managers/kegStatus_manager.php';
 require_once __DIR__.'/includes/managers/kegType_manager.php';
+require_once __DIR__.'/includes/managers/beer_manager.php';
 
 $htmlHelper = new HtmlHelper();
 $kegManager = new KegManager();
 $kegStatusManager = new KegStatusManager();
 $kegTypeManager = new KegTypeManager();
+$beerManager = new BeerManager();
 
 
 
@@ -76,8 +79,7 @@ include 'header.php';
 						<th width="5%"><center>Label</center></th>
 						<th width="10%" colspan="2"><center>Status / Update</center></th>
 						<th width="28%"><center>Keg Type</center></th>
-						<th width="28%"><center>Make</center></th>
-						<th width="29%"><center>Model</center></th>
+						<th width="28%"><center>Beer Name</center></th>
 					</tr>
 				</thead>
 
@@ -115,13 +117,22 @@ include 'header.php';
 							<center><b><?php echo $kegType->get_name() ?></b></center>
 						</td>
 						
+            <?php 
+              if( is_null($keg->get_beerId()) ){  
+            ?>
 						<td style="vertical-align:middle; font-size:1.2em;">
-							<center><b><?php echo $keg->get_make() ?></b></center>
+							<center><b> </b></center>
 						</td>
+            <?php 
+              }else{
+            ?>
+						<td style="vertical-align:middle; font-size:1.2em;">
+							<center><b><?php echo $beerManager->GetById($keg->get_beerId())->get_name() ?></b></center>
+						</td>
+            <?php 
+              }
+            ?>
 						
-						<td class="rightborder thick"style="vertical-align:middle; font-size:1.2em;">
-							<center><b><?php echo $keg->get_model() ?></b></center>
-						</td>
 					</tr>
 					<tr class="intborder">
 						<td class="leftborder">
@@ -136,9 +147,7 @@ include 'header.php';
 							</form>
 							</center>
 						</td>
-						<td colspan="3">
-							<b>Stamped Owner / Location:</b> &nbsp; <?php echo $keg->get_stampedOwner() ?> / <?php echo $keg->get_stampedLoc() ?><br>
-							<b>Serial Number:</b> &nbsp; <?php echo $keg->get_serial() ?> &nbsp; &nbsp; &nbsp; <b>Empty weight:</b> <?php echo $keg->get_weight() ?><br>
+						<td colspan="2">
 							<b>Notes:</b> &nbsp; <?php echo $keg->get_notes() ?>
 						</td>
 					</tr>
