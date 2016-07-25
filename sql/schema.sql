@@ -352,6 +352,57 @@ CREATE TABLE IF NOT EXISTS `pours` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fermentables`
+--
+
+CREATE TABLE IF NOT EXISTS `fermentables` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` tinytext NOT NULL,
+	`beerId` int(11) ,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hops`
+--
+
+CREATE TABLE IF NOT EXISTS `hops` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` tinytext NOT NULL,
+	`beerId` int(11) ,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `yeasts`
+--
+
+CREATE TABLE IF NOT EXISTS `yeasts` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` tinytext NOT NULL,
+	`beerId` int(11) ,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Users`
 --
 

@@ -100,4 +100,37 @@ class BeerManager{
 		
 		$_SESSION['successMessage'] = "Beer successfully deleted.";
 	}
+
+  function GetFermentables($id){
+		$sql="SELECT * FROM fermentables WHERE beerId = $id";
+		$qry = mysqli_query($this->link,$sql);
+		
+    $fermentables = array();
+		while( $i = mysqli_fetch_array($qry) ){		
+      $fermentables[] = $i['name'];
+		}
+    return $fermentables;
+  }
+
+  function GetHops($id){
+		$sql="SELECT * FROM hops WHERE beerId = $id";
+		$qry = mysqli_query($this->link,$sql);
+		
+    $hops = array();
+		while( $i = mysqli_fetch_array($qry) ){		
+      $hops[] = $i['name'];
+		}
+    return $hops;
+  }
+
+  function GetYeasts($id){
+		$sql="SELECT * FROM yeasts WHERE beerId = $id";
+		$qry = mysqli_query($this->link,$sql);
+		
+    $yeasts = array();
+		while( $i = mysqli_fetch_array($qry) ){		
+      $yeasts[] = $i['name'];
+		}
+    return $yeasts;
+  }
 }
