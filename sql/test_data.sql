@@ -80,6 +80,18 @@ FROM (SELECT k.*, kt.maxAmount as startAmount FROM kegs k LEFT JOIN kegTypes kt 
 -- --------------------------------------------------------
 
 --
+-- Add some bottles to `bottles` table
+--
+
+INSERT INTO `bottles` ( bottleTypeId, beerId, capRgba, capNumber, startAmount, currentAmount, active, createdDate, modifiedDate ) VALUES
+( '1', '1', '200,000,000,0.5', '1', '16', '16', '1', NOW(), NOW() ),
+( '2', '2', '000,200,000,0.5', NULL, '8', '6', '1', NOW(), NOW() ),
+( '1', '3', '000,000,200,0.5', NULL, '32', '12', '1', NOW(), NOW() ),
+( '2', '4', '200,200,200,0.5', NULL, '4', '1', '1', NOW(), NOW() );
+
+-- --------------------------------------------------------
+
+--
 -- Add number of taps to `config`
 --
 
