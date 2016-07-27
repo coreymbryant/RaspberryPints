@@ -8,14 +8,22 @@ require '../includes/config_names.php';
 require_once 'includes/functions.php';
 
 // Get values from form 
-$header_text=encode($_POST['header_text']);
+if($header_text=encode($_POST['header_text']))
+{
+  // update data in mysql database
+  $sql="UPDATE config SET configValue='$header_text' WHERE configName ='headerText'";
+  $result=mysqli_query($con,$sql);
+}
+else if($bottle_header_text=encode($_POST['bottle_header_text']))
+{
+  // update data in mysql database
+  $sql="UPDATE config SET configValue='$bottle_header_text' WHERE configName ='bottleHeaderText'";
+  $result=mysqli_query($con,$sql);
+}
 
 
 
 
-// update data in mysql database
-$sql="UPDATE config SET configValue='$header_text' WHERE configName ='headerText'";
-$result=mysqli_query($con,$sql);
 
 // if successfully updated.
 if($result){

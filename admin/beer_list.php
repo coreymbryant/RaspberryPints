@@ -15,6 +15,13 @@ require_once __DIR__.'/includes/models/beerStyle.php';
 require_once __DIR__.'/includes/managers/beer_manager.php';
 require_once __DIR__.'/includes/managers/beerStyle_manager.php';
 
+$config = array();
+$sql = "SELECT * FROM config";
+$qry = mysqli_query($con,$sql);
+while($c = mysqli_fetch_array($qry))
+{
+  $config[$c['configName']] = $c['configValue'];
+}
 
 $htmlHelper = new HtmlHelper();
 $beerManager = new BeerManager();
@@ -31,7 +38,7 @@ $beers = $beerManager->GetAllActive();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>RaspberryPints</title>
+<title><?php echo $config[ConfigNames::PageTitle]; ?></title>
 <link href="styles/layout.css" rel="stylesheet" type="text/css" />
 <link href="styles/wysiwyg.css" rel="stylesheet" type="text/css" />
 	<!-- Theme Start -->

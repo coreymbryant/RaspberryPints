@@ -1,9 +1,9 @@
+html *{ font-family: "Helvetica", sans-serif; }
 body {
 	background-image: url(img/background.jpg);
 	background-color: #000000;
 	background-size: cover;
 	background-repeat:no-repeat;
-	overflow: hidden;
 	color: #FFFFFF;
 	font: 1.5em Georgia, arial, verdana, sans-serif;
 	margin:5px;
@@ -99,7 +99,6 @@ table{
 }
 table th,
 table td{
-	border-left: 1px white dashed;
 	padding: 1px 5px;
 	text-align: center;
 	vertical-align: top;
@@ -120,7 +119,7 @@ table thead th{
 	vertical-align: top;
 }
 table .tap-num{
-	width: 50px;
+	width: 75px;
 }
 table .srm{
 	width: 125px;
@@ -128,7 +127,7 @@ table .srm{
 	vertical-align: middle;
 }
 table .ibu{
-	width: 125px;
+	width: 175px;
 	text-align: center;
 	vertical-align: middle;	
 }
@@ -138,7 +137,6 @@ table td.name{
 	padding: 5px;
 }
 table .abv{
-	width: 125px;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -164,13 +162,13 @@ span.tapcircle {
   text-align: center;
   width: 2em; 
 }
+
 span.bottlecircle {
-  /* background-color: rgba(153,153,153,.3); */
   border-radius: 1em;
-  border-style: dashed;
-  border-color: rgba(200,200,200,0.75);
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
+  border-style: dashed;
+  border-color: rgba(200,200,200,0.75);
   display: inline-block;
   font-weight: bold;
   line-height: 2em;
@@ -232,7 +230,7 @@ table .subhead{
 	position: relative;
 	height:100px;
 	width:53px;
-	margin: 0 auto;
+	margin: 8px auto;
 }
 .ibu-indicator{
 	position: absolute;
@@ -240,14 +238,13 @@ table .subhead{
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: url(img/ibu/stroke.png) no-repeat bottom left;
+  background: url(img/ibu/stroke.png) no-repeat bottom left;
 }
 .ibu-indicator .ibu-full{
 	position: absolute;
 	bottom: 0;
-	left: 0;
 	width: 100%;
-	background: url(img/ibu/full.png) no-repeat bottom left;
+	background: url(img/ibu/full.png) repeat-x bottom left;
 }
 	
 .ibu-max{
@@ -304,10 +301,10 @@ table .subhead{
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background: url(img/keg/full.png) no-repeat bottom left;
+	background: url(img/keg/green.png) no-repeat bottom left;
 }
 .keg-indicator .keg-empty{
-	background-image: url(img/keg/empty.png);
+	background-image: url(img/keg/stroke.png);
 }
 .keg-indicator .keg-red{
 	background-image: url(img/keg/red.png);

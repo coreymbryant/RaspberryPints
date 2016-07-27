@@ -8,13 +8,20 @@ require 'includes/conn.php';
 require '../includes/config_names.php';
 require 'includes/configp.php';
 
+$config = array();
+$sql = "SELECT * FROM config";
+$qry = mysqli_query($con,$sql);
+while($c = mysqli_fetch_array($qry))
+{
+  $config[$c['configName']] = $c['configValue'];
+}
 ?> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>RaspberryPints</title>
+<title><?php echo $config[ConfigNames::PageTitle]; ?></title>
 <link href="styles/layout.css" rel="stylesheet" type="text/css" />
 <link href="styles/wysiwyg.css" rel="stylesheet" type="text/css" />
 <!-- Theme Start -->
@@ -61,7 +68,20 @@ include 'header.php';
 		<hr />
 
 	<a name="header"></a> 
-		<h2>Taplist Header</h2><br><br>
+		<h2>Page Title</h2><br><br>
+		<?php
+			$sql="SELECT configValue FROM config WHERE configName ='".ConfigNames::PageTitle."'";
+			$result=mysqli_query($con,$sql);
+			$pageTitle=mysqli_fetch_array($result);
+		?>
+		<p><b>Text for page title:</b></p>
+			<form method="post" action="update_page_title.php">
+				<input type="text" class="largebox" value="<?php echo $pageTitle['configValue']; ?>" name="page_title"> &nbsp 
+				<input type="submit" class="btn" name="Submit" value="Submit">
+			</form><br><br>
+		<hr />
+	<a name="header"></a> 
+		<h2>Tap List Header</h2><br><br>
 		<?php
 			$sql="SELECT configValue FROM config WHERE configName ='".ConfigNames::HeaderText."'";
 			$result=mysqli_query($con,$sql);
@@ -80,6 +100,29 @@ include 'header.php';
 		<p><b>Truncate To:</b> (# characters)</p>
 			<form method="post" action="update_header_text_trunclen.php">
 				<input type="text" class="smallbox" value="<?php echo $headerTextTruncLen['configValue']; ?>" name="header_text_trunclen"> &nbsp 
+				<input type="submit" class="btn" name="Submit" value="Submit">
+			</form>
+	<a name="logo"></a> 
+	<a name="header"></a> 
+		<h2>Bottle List Header</h2><br><br>
+		<?php
+			$sql="SELECT configValue FROM config WHERE configName ='".ConfigNames::BottleHeaderText."'";
+			$result=mysqli_query($con,$sql);
+			$bottleHeaderText=mysqli_fetch_array($result);
+		?>
+		<p><b>Text to Display:</b></p>
+			<form method="post" action="update_header_text.php">
+				<input type="text" class="largebox" value="<?php echo $bottleHeaderText['configValue']; ?>" name="bottle_header_text"> &nbsp 
+				<input type="submit" class="btn" name="Submit" value="Submit">
+			</form><br><br>
+		<?php
+			$sql="SELECT configValue FROM config WHERE configName ='".ConfigNames::BottleHeaderTextTruncLen."'";
+			$result=mysqli_query($con,$sql);
+			$bottleHeaderTextTruncLen=mysqli_fetch_array($result);
+		?>
+		<p><b>Truncate To:</b> (# characters)</p>
+			<form method="post" action="update_header_text_trunclen.php">
+				<input type="text" class="smallbox" value="<?php echo $bottleHeaderTextTruncLen['configValue']; ?>" name="bottle_header_text_trunclen"> &nbsp 
 				<input type="submit" class="btn" name="Submit" value="Submit">
 			</form>
 		<hr />

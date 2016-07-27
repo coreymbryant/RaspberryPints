@@ -8,14 +8,22 @@ require '../includes/config_names.php';
 
 
 // Get values from form 
-$header_text_trunclen=$_POST['header_text_trunclen'];
+if($header_text_trunclen=$_POST['header_text_trunclen'])
+{
+  // update data in mysql database
+  $sql="UPDATE config SET configValue='$header_text_trunclen' WHERE configName ='headerTextTruncLen'";
+  $result=mysqli_query($con,$sql);
+}
+elseif($bottle_header_text_trunclen=$_POST['bottle_header_text_trunclen'])
+{
+  // update data in mysql database
+  $sql="UPDATE config SET configValue='$bottle_header_text_trunclen' WHERE configName ='bottleHeaderTextTruncLen'";
+  $result=mysqli_query($con,$sql);
+}
 
 
 
 
-// update data in mysql database
-$sql="UPDATE config SET configValue='$header_text_trunclen' WHERE configName ='headerTextTruncLen'";
-$result=mysqli_query($con,$sql);
 
 // if successfully updated.
 if($result){

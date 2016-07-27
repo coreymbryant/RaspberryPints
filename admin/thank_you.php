@@ -5,13 +5,21 @@ header("location:index.php");
 }
 
 require 'includes/conn.php';
+require_once '../includes/config_names.php';
+$config = array();
+$sql = "SELECT * FROM config";
+$qry = mysqli_query($con,$sql);
+while($c = mysqli_fetch_array($qry))
+{
+  $config[$c['configName']] = $c['configValue'];
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>RaspberryPints</title>
+<title><?php echo $config[ConfigNames::PageTitle]; ?></title>
 <link href="styles/layout.css" rel="stylesheet" type="text/css" />
 <link href="styles/wysiwyg.css" rel="stylesheet" type="text/css" />
 <!-- Theme Start -->

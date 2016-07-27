@@ -23,6 +23,9 @@ table .keg{
 span.tapcircle {	
   font-size: 30px;
 }
+span.bottlecircle {	
+  font-size: 30px;
+}
 
 .srm-container{
 	height: 200px;
