@@ -84,12 +84,7 @@ include 'header.php';
 	
 	<?php 
 		$tapsErrorMsg = "";
-		$beers = $beerManager->GetAll();
 		$kegs = $kegManager->GetAll();
-		
-		if( count($beers) == 0 ){
-			$tapsErrorMsg .= "At least 1 beer needs to be created, before you can assign a tap. <a href='beer_form.php'>Click here to create a beer</a><br/>";
-		}
 		
 		if( count($kegs) == 0 ){
 			$tapsErrorMsg .= "At least 1 keg needs to be created, before you can assign a tap. <a href='keg_form.php'>Click here to create a keg</a><br/>";
@@ -108,12 +103,8 @@ include 'header.php';
 					<thead>
 						<tr>
 							<th>Tap #</th>
-							<th>Beer Name</th>
-							<th>SRM</th>
-							<th>IBU</th>
-							<th>OG</th>
-							<th>FG</th>
 							<th>Keg</th>
+							<th>Beer</th>
 							<th>PIN</th>
 							<!-- <th>Start Amount</th> -->
 							<!-- <th>Current Amount</th> -->
@@ -125,8 +116,8 @@ include 'header.php';
 							<form method="POST">
 								<?php if( array_key_exists($c, $activeTaps) ){
 										$tap = $activeTaps[$c];							
-										$beer = $beerManager->GetById($tap->get_beerId());
 										$keg = $kegManager->GetById($tap->get_kegId());
+										$beer = $beerManager->GetById($keg->get_beerId());
 								?>
 										<input type="hidden" name="id" value="<?php echo $tap->get_id()?>" />
 										<input type="hidden" name="tapNumber" value="<?php echo $c?>" />
@@ -135,30 +126,15 @@ include 'header.php';
 												<?php echo $c ?>
 											</td>
 											
-											<td>							
-												<?php echo $beer->get_name() ?>
-											</td>
-											
-											<td>
-												<?php echo $tap->get_srm() ?>
-											</td>
-											
-											<td>							
-												<?php echo $tap->get_ibu() ?>
-											</td>
-											
-											<td>							
-												<?php echo $tap->get_og() ?>
-											</td>
-											
-											<td>
-												<?php echo $tap->get_fg() ?>
-											</td>
-																		
 											<td>
 												<?php echo $keg->get_label() ?>
 											</td>
 											
+											<td>							
+												<?php echo $beer->get_name() ?>
+											</td>
+											
+																		
 											<td>
 												<?php echo $tap->get_pinId() ?>
 											</td>

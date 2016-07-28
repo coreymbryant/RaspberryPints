@@ -294,21 +294,17 @@ CREATE TABLE IF NOT EXISTS `kegs` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`label` int(11) NOT NULL,
 	`kegTypeId` int(11) NOT NULL,
-	`make` text NOT NULL,
-	`model` text NOT NULL,
-	`serial` text NOT NULL,
-	`stampedOwner` text NOT NULL,
-	`stampedLoc` text NOT NULL,
 	`notes` text NOT NULL,
 	`kegStatusCode` varchar(20) NOT NULL,
-	`weight` decimal(11,4) NOT NULL,
+	`beerId` int(11) ,
 	`active` tinyint(1) NOT NULL DEFAULT 1,
 	`createdDate` TIMESTAMP NULL,
 	`modifiedDate` TIMESTAMP NULL,
 	
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`kegStatusCode`) REFERENCES kegStatuses(`Code`) ON DELETE CASCADE,
-	FOREIGN KEY (`kegTypeId`) REFERENCES kegTypes(`id`) ON DELETE CASCADE
+	FOREIGN KEY (`kegTypeId`) REFERENCES kegTypes(`id`) ON DELETE CASCADE,
+	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
 
 
@@ -320,22 +316,16 @@ CREATE TABLE IF NOT EXISTS `kegs` (
 
 CREATE TABLE IF NOT EXISTS `taps` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`beerId` int(11) NOT NULL,
 	`kegId` int(11) NOT NULL,
 	`tapNumber` int(11) NOT NULL,
 	`pinId` int(2) DEFAULT NULL,
 	`active` tinyint(1) NOT NULL,
-	`ogAct` decimal(4,3) NOT NULL,
-	`fgAct` decimal(4,3) NOT NULL,
-	`srmAct` decimal(3,1) NOT NULL,
-	`ibuAct` int(4) NOT NULL,
 	`startAmount` decimal(6,1) NOT NULL,
 	`currentAmount` decimal(6,1) NOT NULL,
 	`createdDate` TIMESTAMP NULL,
 	`modifiedDate` TIMESTAMP NULL,
 	
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`kegId`) REFERENCES kegs(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
 
@@ -819,19 +809,20 @@ SELECT
 	b.name,
 	bs.name as 'style',
 	b.notes,
-	t.ogAct,
-	t.fgAct,
-	t.srmAct,
-	t.ibuAct,
+	b.ogEst,
+	b.fgEst,
+	b.srmEst,
+	b.ibuEst,
 	t.startAmount,
 	IFNULL(p.amountPoured, 0) as amountPoured,
 	t.startAmount - IFNULL(p.amountPoured, 0) as remainAmount,
 	t.tapNumber,
 	s.rgb as srmRgb
 FROM taps t
-	LEFT JOIN beers b ON b.id = t.beerId
+	LEFT JOIN kegs k ON k.id = t.kegId
+	LEFT JOIN beers b ON b.id = k.beerId
 	LEFT JOIN beerStyles bs ON bs.id = b.beerStyleId
-	LEFT JOIN srmRgb s ON s.srm = t.srmAct
+	LEFT JOIN srmRgb s ON s.srm = b.srmEst
 	LEFT JOIN vwGetTapsAmountPoured as p ON p.tapId = t.Id
 WHERE t.active = true
 ORDER BY t.tapNumber;

@@ -11,15 +11,18 @@ require_once 'includes/functions.php';
 require_once 'includes/models/keg.php';
 require_once 'includes/models/kegType.php';
 require_once 'includes/models/kegStatus.php';
+require_once 'includes/models/beer.php';
 
 require_once 'includes/managers/keg_manager.php';
 require_once 'includes/managers/kegStatus_manager.php';
 require_once 'includes/managers/kegType_manager.php';
+require_once 'includes/managers/beer_manager.php';
 
 $htmlHelper = new HtmlHelper();
 $kegManager = new KegManager();
 $kegStatusManager = new KegStatusManager();
 $kegTypeManager = new KegTypeManager();
+$beerManager = new BeerManager();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,6 +40,13 @@ if( isset($_GET['id'])){
 
 $kegStatusList = $kegStatusManager->GetAll();
 $kegTypeList = $kegTypeManager->GetAll();
+$beerList = $beerManager->GetAllActive();
+
+if( isset($_GET['beerId'])){
+	$beer = $beerManager->GetById($_GET['beerId']);
+}else{
+	$beer = new Beer();
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -97,55 +107,7 @@ include 'header.php';
 			</tr>	
 			<tr>
 				<td>
-					Make: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="make" class="mediumbox" name="make" value="<?php echo $keg->get_make() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Model: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="model" class="mediumbox" name="model" value="<?php echo $keg->get_model() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Serial: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="serial" class="mediumbox" name="serial" value="<?php echo $keg->get_serial() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Stamped Owner: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="stampedOwner" class="mediumbox" name="stampedOwner" value="<?php echo $keg->get_stampedOwner() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Stamped Location: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="stampedLoc" class="mediumbox" name="stampedLoc" value="<?php echo $keg->get_stampedLoc() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Empty Weight: <b><font color="red">*</color></b>
-				</td>
-				<td>
-					<input type="text" id="weight" class="mediumbox" name="weight" value="<?php echo $keg->get_weight() ?>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Notes: <b><font color="red">*</color></b>
+					Notes: <b><font color="red"></color></b>
 				</td>
 				<td>
 					<textarea id="notes" class="text-input textarea" name="notes" style="width:500px;height:100px"><?php echo $keg->get_notes() ?></textarea>
@@ -157,6 +119,14 @@ include 'header.php';
 				</td>
 				<td>
 					<?php echo $htmlHelper->ToSelectList("kegStatusCode", $kegStatusList, "name", "code", $keg->get_kegStatusCode(), "Select One"); ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Beer Name: </b>
+				</td>
+				<td>
+					<?php echo $htmlHelper->ToSelectList("beerId", $beerList, "name", "id", $keg->get_beerId(), "Select One"); ?>
 				</td>
 			</tr>
 			<tr>
@@ -196,19 +166,19 @@ include 'scripts.php';
 
 <script>
 	$(function() {		
+		var beerList = { 
+			<?php foreach($beerList as $beerItem){ 
+				echo $beerItem->get_id() . ": " . $beerItem->toJson() . ", "; 
+			} ?>
+		};
 		
 		$('#keg-form').validate({
 			rules: {
 				label: { required: true, number: true },
 				kegTypeId: { required: true },
 				kegStatusCode: { required: true },
-				make: { required: true },
-				model: { required: true },
-				serial: { required: true },
-				stampedOwner: { required: true },
-				stampedLoc: { required: true },
-				weight: { required: true },
-				notes: { required: true }
+				notes: { required: false },
+				beerId: { required: false }
 			}
 		});
 		

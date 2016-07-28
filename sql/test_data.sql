@@ -40,31 +40,31 @@ INSERT INTO `beers` (`name`, `beerStyleId`, `ogEst`, `fgEst`, `srmEst`, `ibuEst`
 -- Dumping data for table `kegTypes`
 --
 
-INSERT INTO `kegs` ( label, kegTypeId, make, model, serial, stampedOwner, stampedLoc, notes, kegStatusCode, createdDate, modifiedDate ) VALUES
-( '1', '1', 'Cornelius', 'Super Champion', '16530387', 'Johnstown Production Center', '(Unknown)', 'One hanndle cracked', 'SERVING', NOW(), NOW() ),
-( '2', '1', 'Spartanburg', 'Challenger VI', '81175979', 'Joyce Bev', 'Washington D.C.', 'Green handles', 'SERVING', NOW(), NOW() ),
-( '3', '1', 'Cornelius', 'Super Champion', '75162875', 'Pepi Cola Btlg Co', 'Oskaloosa, IA', '', 'SERVING', NOW(), NOW() ),
-( '4', '1', 'Cornelius', 'Super Champion', '77320513', 'Binghamton Btlg Co', '(Unknown)', '', 'SERVING', NOW(), NOW() ),
-( '5', '1', 'Cornelius', 'Super Champion', '80224203', 'Pepsi Btlg Co', 'Southern CA', 'Green handles', 'SERVING', NOW(), NOW() ),
-( '6', '1', 'Spartanburg', 'Challenger VI', '290880483', 'Pepsi Cola Btlg Co', 'San Diego', '', 'SERVING', NOW(), NOW() ),
-( '7', '1', 'Cornelius', 'Super Champion', '83129068', 'Pepsi Cola Btlg Co', '(Unknown)', '', 'SERVING', NOW(), NOW() ),
-( '8', '1', 'Cornelius', 'Super Champion', '78143233', 'Pepsi Cola Btlg Co', 'Parkersburg WVA', '', 'SERVING', NOW(), NOW() ),
-( '9', '1', 'Spantanburg', 'Challenger VI', '112620585', 'Pepsi Cola Btlg Co', 'Aleghany, NY', 'Blue handles', 'SERVING', NOW(), NOW() ),
-( '10', '1', 'Cornelius', 'Super Champion', '82217553', 'Pepsi Cola Seven Up', 'Mpls St Paul', '', 'SERVING', NOW(), NOW() ),
-( '11', '1', 'Cornelius', 'Super Champion', '77143229', 'So Conn Seven Up', 'S Norwalk Conn', 'Green handles', 'SECONDARY', NOW(), NOW() ),
-( '12', '1', 'Cornelius', 'Super Champion', '86018983', 'Seltzer Rydholm', 'Aub Port Aug', '', 'SECONDARY', NOW(), NOW() ),
-( '13', '1', 'Cornelius', 'Super Champion', '84405189', 'Pepsi Cola Btlg Co', 'Williamsport, PA', '', 'DRY_HOPPING', NOW(), NOW() ),
-( '14', '1', 'Cornelius', 'Super Champion', '80273216', 'Pepsi Cola Btlg Co', 'Waterloo, IA', '', 'DRY_HOPPING', NOW(), NOW() ),
-( '15', '1', 'Cornelius', 'Super Champion', '78225083', 'Pepsi Cola Btlg Co', 'San Diego', '', 'CONDITIONING', NOW(), NOW() ),
-( '16', '1', 'Firestone', 'Challenger VI', '103760380', 'Pepsi Cola Btlg Co', 'San Diego', '', 'CONDITIONING', NOW(), NOW() ),
-( '17', '1', 'Cornelius', 'Super Champion', '85017588', 'Pepsi Cola Btlg Co', 'Fresno, CA', '', 'CLEAN', NOW(), NOW() ),
-( '18', '1', 'Firestone', 'Challenger VI', '214311080', 'Dr Pepper Company', 'Dallas Texas 75265', '', 'CLEAN', NOW(), NOW() ),
-( '19', '1', 'Cornelius', 'Super Champion', '79282429', 'Pepsi Cola Btlg Co', 'San Francisco CA 2 79', '', 'CLEAN', NOW(), NOW() ),
-( '20', '1', 'Cornelius', 'Super Champion', '79629286', 'Pepsi Cola Btlg Co', 'Vickers Rock PA', '', 'CLEAN', NOW(), NOW() ),
-( '21', '1', 'Cornelius', 'Super Champion', '83127465', 'Pepsi Cola Btlg Co', 'Mpls and St Paul', '', 'CLEAN', NOW(), NOW() ),
-( '22', '1', 'Firestone', 'Challenger VI', '071410882', 'Pepsi PBG', '(Unknown)', '', 'NEEDS_CLEANING', NOW(), NOW() ),
-( '23', '1', 'Cornelius', 'Super Champion', '83114663', 'Pepsi Cola Seven Up', 'Mpls and St Paul', 'Leaks at pressure relief valve', 'NEEDS_PARTS', NOW(), NOW() ),
-( '24', '1', 'Cornelius', 'Super Champion', '83295909', 'PBG', '(Unknown)', 'Leaks at lid/body interface when < 15 PSI', 'NEEDS_REPAIRS', NOW(), NOW() );
+INSERT INTO `kegs` ( label, kegTypeId, notes, kegStatusCode, beerId, createdDate, modifiedDate ) VALUES
+( '1', '1', 'One hanndle cracked', 'SERVING', '1', NOW(), NOW() ),
+( '2', '1', 'Green handles', 'SERVING', '2', NOW(), NOW() ),
+( '3', '1', '', 'SERVING', '3', NOW(), NOW() ),
+( '4', '1', '', 'SERVING', '4', NOW(), NOW() ),
+( '5', '1', 'Green handles', 'SERVING', '5', NOW(), NOW() ),
+( '6', '1', '', 'SERVING', '6', NOW(), NOW() ),
+( '7', '1', '', 'SERVING', '7', NOW(), NOW() ),
+( '8', '1', '', 'SERVING', '8', NOW(), NOW() ),
+( '9', '1', 'Blue handles', 'SERVING', '9', NOW(), NOW() ),
+( '10', '1', '', 'SERVING', '10', NOW(), NOW() ),
+( '11', '1', 'Green handles', 'SECONDARY', '1', NOW(), NOW() ),
+( '12', '1', '', 'SECONDARY', '2', NOW(), NOW() ),
+( '13', '1', '', 'DRY_HOPPING', '3', NOW(), NOW() ),
+( '14', '1', '', 'DRY_HOPPING', '4', NOW(), NOW() ),
+( '15', '1', '', 'CONDITIONING', '5', NOW(), NOW() ),
+( '16', '1', '', 'CONDITIONING', '6', NOW(), NOW() ),
+( '17', '1', '', 'CLEAN', NULL, NOW(), NOW() ),
+( '18', '1', '', 'CLEAN', NULL, NOW(), NOW() ),
+( '19', '1', '', 'CLEAN', NULL, NOW(), NOW() ),
+( '20', '1', '', 'CLEAN', NULL, NOW(), NOW() ),
+( '21', '1', '', 'CLEAN', NULL, NOW(), NOW() ),
+( '22', '1', '', 'NEEDS_CLEANING', '2', NOW(), NOW() ),
+( '23', '1', 'Leaks at pressure relief valve', 'NEEDS_PARTS', NULL, NOW(), NOW() ),
+( '24', '1', 'Leaks at lid/body interface when < 15 PSI', 'NEEDS_REPAIRS', NULL, NOW(), NOW() );
 
 
 -- --------------------------------------------------------
@@ -73,9 +73,9 @@ INSERT INTO `kegs` ( label, kegTypeId, make, model, serial, stampedOwner, stampe
 -- Put all beers into the `taps` table
 --
 
-INSERT INTO taps(`beerId`, `kegId`, `tapNumber`, `active`, `ogAct`, `fgAct`, `srmAct`, `ibuAct`, `startAmount`, `currentAmount`, `createdDate`, `modifiedDate`)
-SELECT b.id, keg.id as kegId, b.id as tapNumber, 1 as active, b.ogEst as ogAct, b.fgEst as fgAct, b.srmEst as srmAct, b.ibuEst as ibuAct, keg.startAmount as startAmount, keg.startAmount as currentAmount, NOW() as createdDate, NOW() as modifiedDate
-FROM `beers` as b, (SELECT k.*, kt.maxAmount as startAmount FROM kegs k LEFT JOIN kegTypes kt ON kt.id = k.kegTypeId ORDER BY Id LIMIT 1) as keg;
+INSERT INTO taps(`kegId`, `tapNumber`, `active`, `startAmount`, `currentAmount`, `createdDate`, `modifiedDate`)
+SELECT kegs.id as kegId, kegs.id as tapNumber, 1 as active, kegs.startAmount as startAmount, kegs.startAmount as currentAmount, NOW() as createdDate, NOW() as modifiedDate
+FROM (SELECT k.*, kt.maxAmount as startAmount FROM kegs k LEFT JOIN kegTypes kt ON kt.id = k.kegTypeId ORDER BY Id) as kegs;
 
 -- --------------------------------------------------------
 
