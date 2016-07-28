@@ -155,7 +155,7 @@ INSERT INTO `beerStyles`( name, catNum, category, beerStyleList, ogMin, ogMax, f
 ( '_Non-beer: Coffee', 'N/A', 'Coffee', 'Other', '1', '1', '1', '1', '0', '0', '0', '0', '0', '40', NOW(), NOW() ),
 ( '_Non-beer: Fruit Juice', 'N/A', 'Fruit Juice', 'Other', '1', '1', '1', '1', '0', '0', '0', '0', '0', '40', NOW(), NOW() ),
 ( '_Non-beer: Fruit Drink', 'N/A', 'Fruit Drink', 'Other', '1', '1', '1', '1', '0', '0', '0', '0', '0', '40', NOW(), NOW() ),
-( '_Non-beer: Seltzer Water', 'N/A', 'Seltzer Water', 'Other', '1', '1', '1', '1', '0', '0', '0', '0', '0', '40', NOW(), NOW() );
+( '_Non-beer: Seltzer Water', 'N/A', 'Seltzer Water', 'Other', '1', '1', '1', '1', '0', '0', '0', '0', '0', '40', NOW(), NOW() ),
 -- BJCP 2015 styles
 ( 'American Light Lager', '1A', 'Standard American Beer', 'BJCP 2015', '1.028', '1.04', '0.998', '1.008', '2.8', '4.2', '8', '12', '2', '3', NOW(), NOW() ),
 ( 'American Lager', '1B', 'Standard American Beer', 'BJCP 2015', '1.04', '1.05', '1.004', '1.01', '4.2', '5.3', '8', '18', '2', '4', NOW(), NOW() ),
@@ -298,7 +298,7 @@ INSERT INTO `beerStyles`( name, catNum, category, beerStyleList, ogMin, ogMax, f
 ( 'Applewine', 'C2C', 'Specialty Cider and Perry', 'BJCP 2015', '1.070', '1.100', '0.995', '1.020', '9', '12', '0', '0', '0', '0', NOW(), NOW() ),
 ( 'Ice Cider', 'C2D', 'Specialty Cider and Perry', 'BJCP 2015', '1.130', '1.180', '1.060', '1.085', '7', '13', '0', '0', '0', '0', NOW(), NOW() ),
 ( 'Cider with Herbs/Spices', 'C2E', 'Specialty Cider and Perry', 'BJCP 2015', '1.045', '1.070', '0.995', '1.010', '5', '9', '0', '0', '0', '0', NOW(), NOW() ),
-( 'Specialty Cider/Perry', 'C2F', 'Specialty Cider and Perry', 'BJCP 2015', '1.045', '1.100', '0.995', '1.020', '5', '12', '0', '0', '0', '0', NOW(), NOW() ),
+( 'Specialty Cider/Perry', 'C2F', 'Specialty Cider and Perry', 'BJCP 2015', '1.045', '1.100', '0.995', '1.020', '5', '12', '0', '0', '0', '0', NOW(), NOW() );
 
 -- --------------------------------------------------------
 
