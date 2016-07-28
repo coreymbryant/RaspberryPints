@@ -141,7 +141,7 @@ include 'header.php';
 											if ( $beer->get_fg() != 1 && $beer->get_fg() != 0 )
 												echo "<b>FG:</b> " , $beer->get_fg() , "<br>" ;
 											else
-												echo "<b>FG:</b> N/A"
+												echo "<b>FG:</b> N/A<br>"
 										?>
                     <?php
                       $abv = ($beer->get_og() - $beer->get_fg()) * 131;
