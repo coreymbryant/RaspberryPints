@@ -68,6 +68,7 @@ include 'header.php';
 			<?php $htmlHelper->ShowMessage(); ?>
 			
 			<input type="submit" class="btn" value="Add a Beer" onclick="window.location='beer_form.php'" />
+			<input type="submit" class="btn" value="Add with BeerXML" onclick="window.location='beer_form_xml.php'" />
 			<br/><br/>
 			
 			<table width="770px" cellspacing="0" cellpadding="0" class="outerborder">
@@ -125,18 +126,6 @@ include 'header.php';
 								<tr class="intborder thick">
 									<td>
 										<p><b><u>Vitals</u></b></p>
-										<p><?php
-											if ( $beer->get_srm() != 0 )
-												echo "<b>SRM:</b> " , $beer->get_srm() , "<br>" ;
-											else
-												echo "<b>SRM:</b> N/A<br>"
-										?>
-										<?php
-											if ( $beer->get_ibu() != 0 )
-												echo "<b>IBU:</b> " , $beer->get_ibu() , "<br>" ;
-											else
-												echo "<b>IBU:</b> N/A<br>"
-										?>
 										<?php
 											if ( $beer->get_og() != 1 && $beer->get_og() != 0 )
 												echo "<b>OG:</b> " , $beer->get_og() , "<br>" ;
@@ -148,39 +137,51 @@ include 'header.php';
 												echo "<b>FG:</b> " , $beer->get_fg() , "<br>" ;
 											else
 												echo "<b>FG:</b> N/A"
-										?></p>
+										?>
+                    <?php
+                      $abv = ($beer->get_og() - $beer->get_fg()) * 131;
+                      echo "<b>ABV:</b> " , number_format($abv, 1, '.', ',')."%<br>"; 
+                    ?>
+										<?php
+											if ( $beer->get_ibu() != 0 )
+												echo "<b>IBU:</b> " , $beer->get_ibu() , "<br>" ;
+											else
+												echo "<b>IBU:</b> N/A<br>"
+										?>
+										<p><?php
+											if ( $beer->get_srm() != 0 )
+												echo "<b>SRM:</b> " , $beer->get_srm() , "<br>" ;
+											else
+												echo "<b>SRM:</b> N/A<br>"
+										?>
 										
-										<p><b>Water:</b> <!-- Sacramento, CA --> <br>
-										<b>Salts:</b> <!-- Camden, pH 5.2 Stabilizer --> <br>
-										<b>Finings:</b> <!-- Whirfloc --> <br>
-										<b>Yeast</b>: <!-- Fermentis S-04 --><br></p>
 									</td>
 									<td colspan="3">
 										<p><b><u>Fermentables:</u></b></p><p>
-										<!--
-										60.5% Pilsner (2 Row) Ger (2.0 SRM)<br>
-										32.4% Pale Ale Malt, Northwestern (Great Western) (3.0 SRM)<br>
-										7.1% Crystal 15, 2-Row, (Great Western) (15.0 SRM)<br>
-										-->
+                    <?php
+                      $fermentables = $beerManager->GetFermentables($beer->get_id());
+                      foreach($fermentables as $fermentable){
+                       echo $fermentable . "<br>";
+                      }
+                    ?>
 										</p>
 										
-										<p><b><u>Mash Profile:</u></b></p><p>
-										<!--
-										Step 1: Dough-in @ 70&deg;F (2 min)<br>
-										Step 2: Conversion @ 154&deg;F (60 min)<br>
-										Step 3: Batch Sparge @ 168&deg;F (5 min)<br>
-										Step 4: Batch Sparge @ 168&deg;F (5 min)</p>
-										-->
+										<p><b><u>Hops:</u></b></p><p>
+                    <?php
+                      $hops = $beerManager->GetHops($beer->get_id());
+                      foreach($hops as $hop){
+                       echo $hop . "<br>";
+                      }
+                    ?>
 										</p>
-										
-										<p><b><u>Hop Schedule:</u></b></p><p>
-										<!--
-										0.90 oz Simcoe (13.00% AA) @ 90 min<br>
-										0.90 oz Simcoe (13.00% AA) @ 30 min<br>
-										1.80 oz Simcoe (13.00% AA) @ 0 min<br>
-										2.00 oz Simcoe (13.00% AA) @ Dry Hop 10.0 Days</p>
-										-->
-										</p>
+										<p><b><u>Yeast:</u></b></p><p>
+                    <?php 
+                      $yeasts = $beerManager->GetYeasts($beer->get_id());
+                      foreach($yeasts as $yeast){
+                       echo $yeast . "<br>";
+                      }
+                    ?>
+                    </p>
 									</td>
 								</tr>
 					<?php 
@@ -190,6 +191,7 @@ include 'header.php';
 				</tbody>
 			</table><br>
 			<input type="submit" class="btn" value="Add a Beer" onclick="window.location='beer_form.php'" />
+			<input type="submit" class="btn" value="Add a Beer with XML" onclick="window.location='beer_form_xml.php'" />
 		</div>
 	</div>
 	<!-- Start Footer -->   
