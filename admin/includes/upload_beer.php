@@ -28,13 +28,15 @@ else
 
     $xml=simplexml_load_file($_FILES['uploaded']['tmp_name']);
 
-    $sql = "SELECT id from beerStyles where name='" . $xml->RECIPE[0]->STYLE->NAME . "';";
+    $catNum = $xml->RECIPE[0]->STYLE->CATEGORY_NUMBER . $xml->RECIPE[0]->STYLE->STYLE_LETTER;
+    $styleName = $xml->RECIPE[0]->STYLE->NAME;
+    $sql = "SELECT id from beerStyles where name='" . $xml->RECIPE[0]->STYLE->NAME . "' and catNum='" . $catNum . "';";
+
     $qry = mysqli_query($con,$sql);
     $styleId = mysqli_fetch_assoc($qry)['id'];
     if ($styleId == '')
     {
-      $catNum = $xml->RECIPE[0]->STYLE->CATEGORY_NUMBER . $xml->RECIPE[0]->STYLE->STYLE_LETTER;
-      $sql = "SELECT id from beerStyles where catNum='" . $catNum . "';";
+      $sql = "SELECT id from beerStyles where name='" . $xml->RECIPE[0]->STYLE->NAME . "';";
       $qry = mysqli_query($con,$sql);
       $styleId = mysqli_fetch_assoc($qry)['id'];
     }
