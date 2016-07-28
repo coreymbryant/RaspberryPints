@@ -487,7 +487,6 @@ CREATE TABLE IF NOT EXISTS `pours` (
 	`pinId` int(11) DEFAULT NULL,
   `amountPoured` float(6,3) NOT NULL,
   `pulses` int(6) NOT NULL,
- 
 	`createdDate` TIMESTAMP NULL,
 	`modifiedDate` TIMESTAMP NULL,
 	
@@ -528,7 +527,6 @@ CREATE TABLE IF NOT EXISTS `hops` (
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
@@ -544,6 +542,74 @@ CREATE TABLE IF NOT EXISTS `yeasts` (
 	
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bottleTypes`
+--
+
+CREATE TABLE IF NOT EXISTS `bottleTypes` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`displayName` text NOT NULL,
+	`volume` decimal(6,2) NOT NULL,
+	`total` int(11) NOT NULL,
+	`used` int(11) NOT NULL,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bottleTypes`
+--
+
+INSERT INTO `bottleTypes` ( displayName, volume, total, used, createdDate, modifiedDate ) VALUES
+( 'standard (12oz)', '12.0', '40', '0', NOW(), NOW() ),
+( 'flip top (16oz)', '16.0', '5', '0', NOW(), NOW() );
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bottles`
+--
+
+CREATE TABLE IF NOT EXISTS `bottles` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`bottleTypeId` int(11) NOT NULL,
+	`beerId` int(11) NOT NULL,
+	`capRgba` varchar(16) NOT NULL,
+	`capNumber` int(11) NULL,
+	`pinId` int(2) DEFAULT NULL,
+  `startAmount` int(11) NOT NULL,
+  `currentAmount` int(11) NOT NULL,
+	`active` tinyint(1) NOT NULL,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`bottleTypeId`) REFERENCES bottleTypes(`id`) ON DELETE CASCADE,
+	FOREIGN KEY (`beerId`) REFERENCES beers(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `drank`
+--
+
+CREATE TABLE IF NOT EXISTS `drank` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`bottleId` int(11) NOT NULL,
+	`pinId` int(11) DEFAULT NULL,
+  `amountDrank` float(6,3) NOT NULL,
+	`createdDate` TIMESTAMP NULL,
+	`modifiedDate` TIMESTAMP NULL,
+	
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (bottleId) REFERENCES bottles(id) ON DELETE CASCADE
 ) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1023,6 +1089,51 @@ FROM taps t
 	LEFT JOIN vwGetTapsAmountPoured as p ON p.tapId = t.Id
 WHERE t.active = true
 ORDER BY t.tapNumber;
+
+-- --------------------------------------------------------
+
+--
+-- Create View `vwGetBottlesDrank`
+--
+
+CREATE VIEW vwGetBottlesDrank
+AS
+SELECT bottleId, SUM(amountDrank) as amountDrank FROM drank GROUP BY bottleId;
+
+-- --------------------------------------------------------
+--
+-- Create View `vwGetFilledBottles`
+--
+
+CREATE VIEW vwGetFilledBottles
+AS
+
+SELECT
+	t.id,
+	b.name,
+	bs.name as 'style',
+	b.notes,
+	b.ogEst,
+	b.fgEst,
+	b.srmEst,
+	b.ibuEst,
+  bt.volume,
+	t.startAmount,
+	IFNULL(p.amountDrank, 0) as amountDrank,
+	t.startAmount - IFNULL(p.amountDrank, 0) as remainAmount,
+	t.capRgba,
+	t.capNumber,
+	s.rgb as srmRgb
+FROM bottles t
+	LEFT JOIN beers b ON b.id = t.beerId
+  LEFT JOIN bottleTypes bt ON bt.id = t.bottleTypeId
+	LEFT JOIN beerStyles bs ON bs.id = b.beerStyleId
+	LEFT JOIN srmRgb s ON s.srm = b.srmEst
+	LEFT JOIN vwGetBottlesDrank as p ON p.bottleId = t.Id
+WHERE t.active = true
+ORDER BY t.id;
+
+-- --------------------------------------------------------
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

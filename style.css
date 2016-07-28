@@ -43,6 +43,10 @@ h3 {
 	-webkit-margin-before: 5px;
 	-webkit-margin-after: 5px;
 }
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
 
 p {
 	margin: 20px 0 0 0;
@@ -150,6 +154,20 @@ table td.tap-num{
 span.tapcircle {
   background-color: rgba(153,153,153,.3);
   border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 2em;
+  margin-right: 5px;
+  text-align: center;
+  width: 2em; 
+}
+span.bottlecircle {
+  /* background-color: rgba(153,153,153,.3); */
+  border-radius: 1em;
+  border-style: dashed;
+  border-color: rgba(200,200,200,0.75);
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   display: inline-block;
@@ -301,4 +319,41 @@ table .subhead{
 }
 .keg-indicator .keg-green{
 	background-image: url(img/keg/green.png);
+}
+.bottle-container{
+	position: relative;
+	height: 100px;
+	width: 45px;
+	margin: 8px auto;
+}
+
+.bottle-indicator{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: url(img/bottle/stroke.png) no-repeat bottom left;	
+}
+.bottle-indicator .bottle-full{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: url(img/bottle/green.png) no-repeat bottom left;
+}
+.bottle-indicator .bottle-empty{
+	background-image: url(img/bottle/stroke.png);
+}
+.bottle-indicator .bottle-red{
+	background-image: url(img/bottle/red.png);
+}
+.bottle-indicator .bottle-orange{
+	background-image: url(img/bottle/orange.png);
+}
+.bottle-indicator .bottle-yellow{
+	background-image: url(img/bottle/yellow.png);
+}
+.bottle-indicator .bottle-green{
+	background-image: url(img/bottle/green.png);
 }
