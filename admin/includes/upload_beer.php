@@ -36,14 +36,20 @@ else
     $styleId = mysqli_fetch_assoc($qry)['id'];
     if ($styleId == '')
     {
-      $sql = "SELECT id from beerStyles where name='" . $xml->RECIPE[0]->STYLE->NAME . "';";
+      $sql = "SELECT id from beerStyles where name='" . $styleName . "';";
+      $qry = mysqli_query($con,$sql);
+      $styleId = mysqli_fetch_assoc($qry)['id'];
+    }
+    if ($styleId == '')
+    {
+      $sql = "SELECT id from beerStyles where catNum='" . $catNum . "';";
       $qry = mysqli_query($con,$sql);
       $styleId = mysqli_fetch_assoc($qry)['id'];
     }
 
     if ($styleId == '')
     {
-      echo "Error - file not uploaded: Beer Style '" . $styleId . "' not found. <br>";
+      echo "Error - file not uploaded: Beer Style '" . $catNum . " - " . $styleName . "' not found. <br>";
       echo 'Return to <a href="../beer_list.php">Beer List</a><br />';
     }
     else
