@@ -151,7 +151,7 @@
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>" id="<?php echo $beer['id']; ?>">
 								<?php if($config[ConfigNames::ShowTapNumCol]){ ?>
 									<td class="tap-num">
-										<span class="tapcircle"><?php echo $i; ?></span>
+										<a href ="./includes/drank.php/?tapId=<?php echo $beer['id']; ?>"><span class="tapcircle"><?php echo $i; ?></span>
 									</td>
 								<?php } ?>
 							
