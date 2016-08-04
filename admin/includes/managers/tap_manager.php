@@ -28,13 +28,14 @@ class TapManager{
 						"tapNumber = " . $tap->get_tapNumber() . ", " .
 						"pinId = " . $tap->get_pinId() . "," .
 						"startAmount = " . $tap->get_startAmount() . ", " .
+						"currentAmount = " . $tap->get_currentAmount() . ", " .
 						"active = " . $tap->get_active() . ", " .
 						"modifiedDate = NOW() ".
 					"WHERE id = " . $tap->get_id();
 					
 		}else{
 			$sql = 	"INSERT INTO taps(kegId, tapNumber, pinId, startAmount, currentAmount, active, createdDate, modifiedDate ) " .
-					"VALUES(" . $tap->get_kegId() . ", " . $tap->get_tapNumber() . "," . $tap->get_pinId() . ", " . $tap->get_startAmount() . ", " . $tap->get_startAmount() . ", " . $tap->get_active	() . ", NOW(), NOW())";
+					"VALUES(" . $tap->get_kegId() . ", " . $tap->get_tapNumber() . "," . $tap->get_pinId() . ", " . $tap->get_startAmount() . ", " . $tap->get_currentAmount() . ", " . $tap->get_active	() . ", NOW(), NOW())";
 		}		
 		
 		//echo $sql; exit();

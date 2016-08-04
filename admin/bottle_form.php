@@ -124,6 +124,14 @@ include 'header.php';
 				</td>
 			</tr>
 			<tr>
+				<td style="vertical-align:middle;">
+					<b>Current Amount</b> (bottles): <b><font color="red">*</font></b>
+				</td>
+				<td>
+					<input type="text" id="currentAmount" class="mediumbox" name="currentAmount" value="<?php echo $bottle->get_currentAmount() ?>" />
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2">
 					<input name="save" type="submit" class="btn" value="Save" />
 					<input name="cancel" type="button" class="btn" value="Cancel" onclick="window.location='bottle_list.php'"/>
@@ -177,7 +185,8 @@ include 'scripts.php';
         beerId: { required: true },
         capRgba: { required: true },
         capNumber: { required: true },
-        startAmount: { required: true }
+        startAmount: { required: true },
+        currentAmount: { required: true }
       }
 		});
 		

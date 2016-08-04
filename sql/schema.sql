@@ -597,24 +597,6 @@ CREATE TABLE IF NOT EXISTS `bottles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `drank`
---
-
-CREATE TABLE IF NOT EXISTS `drank` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`bottleId` int(11) NOT NULL,
-	`pinId` int(11) DEFAULT NULL,
-  `amountDrank` float(6,3) NOT NULL,
-	`createdDate` TIMESTAMP NULL,
-	`modifiedDate` TIMESTAMP NULL,
-	
-	PRIMARY KEY (`id`),
-	FOREIGN KEY (bottleId) REFERENCES bottles(id) ON DELETE CASCADE
-) ENGINE=InnoDB	DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Users`
 --
 
@@ -1093,15 +1075,6 @@ ORDER BY t.tapNumber;
 -- --------------------------------------------------------
 
 --
--- Create View `vwGetBottlesDrank`
---
-
-CREATE VIEW vwGetBottlesDrank
-AS
-SELECT bottleId, SUM(amountDrank) as amountDrank FROM drank GROUP BY bottleId;
-
--- --------------------------------------------------------
---
 -- Create View `vwGetFilledBottles`
 --
 
@@ -1119,8 +1092,7 @@ SELECT
 	b.ibuEst,
   bt.volume,
 	t.startAmount,
-	IFNULL(p.amountDrank, 0) as amountDrank,
-	t.startAmount - IFNULL(p.amountDrank, 0) as remainAmount,
+	t.currentAmount as remainAmount,
 	t.capRgba,
 	t.capNumber,
 	s.rgb as srmRgb
@@ -1129,7 +1101,6 @@ FROM bottles t
   LEFT JOIN bottleTypes bt ON bt.id = t.bottleTypeId
 	LEFT JOIN beerStyles bs ON bs.id = b.beerStyleId
 	LEFT JOIN srmRgb s ON s.srm = b.srmEst
-	LEFT JOIN vwGetBottlesDrank as p ON p.bottleId = t.Id
 WHERE t.active = true
 ORDER BY t.id;
 

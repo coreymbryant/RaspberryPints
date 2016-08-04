@@ -80,8 +80,8 @@ include 'header.php';
 							<th>Name</th>
 							<th>Volume</th>
 							<th>Beer</th>
-							<!-- <th>Start Amount</th> -->
-							<!-- <th>Current Amount</th> -->
+							<th>Start Amount</th>
+							<th>Current Amount</th>
 							<th colspan="2"></th>
 						</tr>
 					</thead>
@@ -112,17 +112,13 @@ include 'header.php';
                         <?php echo $beerManager->GetById($bottle->get_beerId())->get_name() ?>
 											</td>
 											
-											<!--
 											<td>
 												<?php echo $bottle->get_startAmount() ?>
 											</td>
-											-->
 											
-											<!--
 											<td>
 												<?php echo $bottle->get_currentAmount() ?>
 											</td>
-											-->
 											
 											<td>
 												<input name="editBottle" type="submit" class="btn" value="Update Bottle Info" onclick="window.location='bottle_form.php?id=<?php echo $bottle->get_id()?>'" />

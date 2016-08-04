@@ -9,16 +9,16 @@ if( isset($_GET['tapId'])){
   $tapId = $_GET["tapId"];
   $sql = "INSERT INTO pours (tapId, amountPoured, createdDate, modifiedDate)" .
     " values (" . $tapId . ", .125,NOW(),NOW())" ;
+  mysqli_query($con,$sql);
 }
 if( isset($_GET['bottleId'])){
   $bottleId = $_GET["bottleId"];
-  $sql = "INSERT INTO drank (bottleId, amountDrank, createdDate, modifiedDate)" .
-    " values (" . $bottleId . ", 1,NOW(),NOW())" ;
+  $sql = "UPDATE bottles SET currentAmount = currentAmount-1  where id=" . $bottleId . ";";
+  mysqli_query($con,$sql);
 }
 
 
 /* echo $sql; */ 
 
-mysqli_query($con,$sql);
 header("location:../../index.php");
 exit;
