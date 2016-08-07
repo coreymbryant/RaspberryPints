@@ -571,7 +571,8 @@ CREATE TABLE IF NOT EXISTS `bottleTypes` (
 
 INSERT INTO `bottleTypes` ( displayName, volume, total, used, createdDate, modifiedDate ) VALUES
 ( 'standard (12oz)', '12.0', '40', '0', NOW(), NOW() ),
-( 'flip top (16oz)', '16.0', '5', '0', NOW(), NOW() );
+( 'flip top (16oz)', '16.0', '5', '0', NOW(), NOW() ),
+( 'can (12oz)', '12.0', '0', '0', NOW(), NOW() );
 
 -- --------------------------------------------------------
 
