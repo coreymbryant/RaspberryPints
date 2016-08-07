@@ -131,6 +131,14 @@ include 'header.php';
 				</td>
 			</tr>
 			<tr>
+				<td style="vertical-align:middle;">
+					<b>Current Amount</b> (gal): <b><font color="red">*</font></b>
+				</td>
+				<td>
+					<input type="text" id="currentAmount" class="mediumbox" name="currentAmount" value="<?php echo $tap->get_currentAmount() ?>" />
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2">
 					<input name="saveTap" type="submit" class="btn" value="Save" />
 					<input name="cancel" type="button" class="btn" value="Cancel" onclick="window.location='tap_list.php'"/>
@@ -202,7 +210,8 @@ include 'scripts.php';
 		$('#tap-form').validate({
 		rules: {
 			kegId: { required: true },
-			startAmount: { required: true, number: true }
+			startAmount: { required: true, number: true },
+			currentAmount: { required: true, number: true }
 		}
 		});
 		

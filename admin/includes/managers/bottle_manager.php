@@ -23,6 +23,7 @@ class BottleManager{
 						"capNumber = " . $bottle->get_capNumber() . ", " .
 						"pinId = '" . $bottle->get_pinId() . "', " .
 						"startAmount = '" . $bottle->get_startAmount() . "', " .
+						"currentAmount = '" . $bottle->get_currentAmount() . "', " .
 						"modifiedDate = NOW() ".
             "WHERE id = " . $bottle->get_id();
 					
@@ -36,7 +37,7 @@ class BottleManager{
         $bottle->get_capNumber() . ", " .
         "'". $bottle->get_pinId() . "', " .
         "'". $bottle->get_startAmount() . "', " .
-        "'". $bottle->get_startAmount() . "', " .
+        "'". $bottle->get_currentAmount() . "', " .
         " '1', NOW(), NOW())";
 		}		
 		

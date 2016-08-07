@@ -73,7 +73,6 @@
 				"ibu" => $b['ibuEst'],
 				"volume" => $b['volume'],
 				"startAmount" => $b['startAmount'],
-				"amountDrank" => $b['amountDrank'],
 				"remainAmount" => $b['remainAmount'],
 				"capRgba" => $b['capRgba'],
 				"capNumber" => $b['capNumber'],
