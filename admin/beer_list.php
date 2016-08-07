@@ -99,16 +99,16 @@ include 'header.php';
 											if (strpos($beerStyle->get_name(),'Non-beer') !== false)
 												echo str_replace("_Non-beer: ","",$beerStyle->get_name());
 											else
-												echo "Style: " , $beerStyle->get_name();
+												echo "Category: " , $beerStyle->get_category();
 										?></b>
 										<?php
 											if (strpos($beerStyle->get_catNum(),'N/A') !== false)
 												echo "&nbsp;";
 											else
                         if ($beerStyle->get_beerStyleList() == 'BJCP 2015')
-                          echo "<br>BJCP(2015):", $beerStyle->get_catNum() , " - " , $beerStyle->get_category();
+                          echo "<br>BJCP(2015):", $beerStyle->get_catNum() , " - " , $beerStyle->get_name();
                         elseif ($beerStyle->get_beerStyleList() == 'BJCP pre 2015')
-                          echo "<br>BJCP:", $beerStyle->get_catNum() , " - " , $beerStyle->get_category();
+                          echo "<br>BJCP:", $beerStyle->get_catNum() , " - " , $beerStyle->get_name();
                         else
                           echo "<br>Other:" , $beerStyle->get_beerStyleList() ;
 										?>
