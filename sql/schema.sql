@@ -1106,7 +1106,7 @@ FROM bottles t
 	LEFT JOIN beerStyles bs ON bs.id = b.beerStyleId
 	LEFT JOIN srmRgb s ON s.srm = b.srmEst
 WHERE t.active = true
-ORDER BY t.id;
+ORDER BY b.name;
 
 -- --------------------------------------------------------
 
