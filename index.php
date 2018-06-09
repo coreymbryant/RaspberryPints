@@ -336,11 +336,13 @@
       <h1>
         <p style="text-align:center">  
           <?php
+                      if ($numberOfBottles>0){
             if (mb_strlen($config[ConfigNames::BottleHeaderText], 'UTF-8') > ($config[ConfigNames::BottleHeaderTextTruncLen])) {
               $bottleHeaderTextTrunced = substr($config[ConfigNames::BottleHeaderText],0,$config[ConfigNames::BottleHeaderTextTruncLen]) . "...";
               echo $bottleHeaderTextTrunced ; }
             else
               echo $config[ConfigNames::BottleHeaderText];
+                      }
           ?>
         </p>
       </h1>
