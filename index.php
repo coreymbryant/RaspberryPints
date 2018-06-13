@@ -101,7 +101,7 @@
 			<link rel="stylesheet" type="text/css" href="high-res.css">
 		<?php } ?>
 		
-		<link rel="shortcut icon" href="img/pint.ico">
+		<link rel="shortcut icon" href="favicon.ico">
 	</head> 
 
 	<body>
