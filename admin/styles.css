@@ -11,7 +11,8 @@
 	ul#nav li a.collapsed:hover {background: url(img/bg_navigation.png) no-repeat 0 -38px; width: 205px;}
 	ul#nav li a.expanded:hover {background: url(img/bg_navigation.png) no-repeat 0 -114px; width: 205px;}
 
-	ul.navigation li.selected {background: url(img/bg_navigation_selected.png) no-repeat -1px 0; border: none;}
+	ul.navigation li.selected {background: url(img/bg_navigation_selected.png) no-repeat -1px 0; border: none; overflow: hidden; width: 205px;}
+
 	
 	/* Side Notifications */
 	
@@ -23,12 +24,12 @@
 		ul.pagination li.page a:hover {background: #00789F url(img/bg_buttons.png) 0 -50px; border: 1px solid #005977;}
 	
 	/* Button Styling */
-	
-	.btn, .btnalt {background: url(img/bg_buttons.png) repeat-x top; border: 1px solid #0D87AE!important; color: #fff; font-size: 11px; padding: 7px 10px; boirder-radius: 7px; -moz-border-radius: 7px; font-weight: 700; border: none;}
-		.btn:hover {background: url(img/bg_buttons.png) 0 -50px; border: 1px solid #005977; cursor: pointer;}
 		
-	.btnalt {background: url(img/bg_buttons_alternative.png) repeat-x top !important; border: 1px solid #333 !important; color: #fff; padding: 7px 10px; border: none;}
-		.btnalt:hover {background: url(img/bg_buttons_alternative.png) 0 -50px !important; border: 1px solid #111 !important; cursor: pointer;}		
+	.btn {background: url(img/bg_buttons_alternative.png) repeat-x top !important; border: 1px solid #333 !important; color: #fff; padding: 7px 10px; border: none;}
+		.btn:hover {background: url(img/bg_buttons_alternative.png) 0 -50px !important; border: 1px solid #111 !important; cursor: pointer;}		
+
+	.btnalt {background: url(img/bg_buttons.png) repeat-x top; border: 1px solid #0D87AE!important; color: #fff; font-size: 11px; padding: 7px 10px; boirder-radius: 7px; -moz-border-radius: 7px; font-weight: 700; border: none;}
+		.btnalt:hover {background: url(img/bg_buttons.png) 0 -50px; border: 1px solid #005977; cursor: pointer;}
 	
 	/* Login Page */
 	
@@ -54,7 +55,7 @@
 	.xlargebox {border: 1px solid #999; padding: 10px; width: 450px; -moz-border-radius: 3px; border-radius: 3px; margin-bottom: 5px; color: #666; background: url(img/bg_fade_sml.png) repeat-x top;}
 		
 	#welcome
-{ font-family: 'Fredoka One', cursive; font-weight: 400; color: white; font-size:140% }		
+{ font-family: 'Helvetica'; font-weight: 400; color: white; font-size:140% }		
 	
 
 blockquote { 

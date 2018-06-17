@@ -7,8 +7,9 @@ require_once '../admin/includes/conn.php';
 
 if( isset($_GET['tapId'])){
   $tapId = $_GET["tapId"];
+  $amount = $_GET["amount"];
   $sql = "INSERT INTO pours (tapId, amountPoured, createdDate, modifiedDate)" .
-    " values (" . $tapId . ", .125,NOW(),NOW())" ;
+    " values (" . $tapId . ", " . $amount . ",NOW(),NOW())" ;
   mysqli_query($con,$sql);
 }
 if( isset($_GET['bottleId'])){
@@ -20,5 +21,5 @@ if( isset($_GET['bottleId'])){
 
 /* echo $sql; */ 
 
-header("location:../../index.php");
+header("location:../../serving.php");
 exit;
