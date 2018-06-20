@@ -196,11 +196,33 @@
 								<td class="name">
 									<h1><?php echo $beer['beername']; ?></h1>
                                     <br/>
-                                    <a class="btn" href ="./includes/drank.php/?tapId=<?php echo $beer['id']; ?>&amount=.03125"><span>Sample</span></a>
-                                    &nbsp; &nbsp; &nbsp;
-                                    <a class="btn" href ="./includes/drank.php/?tapId=<?php echo $beer['id']; ?>&amount=.125"><span>Pint</span></a>
-                                    &nbsp; &nbsp; &nbsp;
-                                    <a class="btn" href ="./includes/drank.php/?tapId=<?php echo $beer['id']; ?>&amount=.5"><span>Growler</span></a>
+                                    <a href
+                                    ="./includes/drank.php/?tapId=<?php echo
+                                    $beer['id']; ?>&amount=.03125">
+                                    <div align="center" class="btn">
+                                    Sample<br>4 fl oz
+                                    </div></a>
+                                    &nbsp; &nbsp;
+                                    <a href
+                                    ="./includes/drank.php/?tapId=<?php echo
+                                    $beer['id']; ?>&amount=.09375">
+                                    <div align="center" class="btn">
+                                    Glass<br>12 fl oz
+                                    </div></a>
+                                    &nbsp; &nbsp;
+                                    <a href
+                                    ="./includes/drank.php/?tapId=<?php echo
+                                    $beer['id']; ?>&amount=.125">
+                                    <div align="center" class="btn">
+                                    Pint<br>16 fl oz
+                                    </div></a>
+                                    &nbsp; &nbsp;
+                                    <a href
+                                    ="./includes/drank.php/?tapId=<?php echo
+                                    $beer['id']; ?>&amount=.5">
+                                    <div align="center" class="btn">
+                                    Growler<br>64 fl oz
+                                    </div></a>
 								</td>
 							
 								
