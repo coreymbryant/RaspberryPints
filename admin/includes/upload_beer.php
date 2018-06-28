@@ -3,7 +3,7 @@ require_once __DIR__.'/conn.php';
 $ok=1; 
 
 //This is our size condition 
-if ($_FILES['uploaded']['size']> 10000) 
+if ($_FILES['uploaded']['size']> 50000) 
 { 
   echo "Your file is too large.<br>"; 
   $ok=0; 
