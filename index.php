@@ -238,7 +238,7 @@
 									<td class="keg">
 										
 										
-										<h3><?php echo number_format((($beer['remainAmount']) )); ?> gal</h3>
+										<h3><?php echo number_format($beer['remainAmount'], 1 ,'.' ,','); ?> gal</h3>
 										<?php 
 											// Code for new kegs that are not full
                                                                                         $tid = $beer['id'];
