@@ -178,7 +178,7 @@
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>" id="<?php echo $beer['id']; ?>">
 								<?php if($config[ConfigNames::ShowTapNumCol]){ ?>
 									<td class="tap-num">
-										<a href ="./includes/drank.php/?tapId=<?php echo $beer['id']; ?>"><span class="tapcircle"><?php echo $i; ?></span>
+										<a href ="./includes/drank.php?tapId=<?php echo $beer['id']; ?>"><span class="tapcircle"><?php echo $i; ?></span>
 									</td>
 								<?php } ?>
 							
@@ -197,28 +197,28 @@
 									<h1><?php echo $beer['beername']; ?></h1>
                                     <br/>
                                     <a href
-                                    ="./includes/drank.php/?tapId=<?php echo
+                                    ="./includes/drank.php?tapId=<?php echo
                                     $beer['id']; ?>&amount=.03125">
                                     <div align="center" class="btn">
                                     Sample<br>4 fl oz
                                     </div></a>
                                     &nbsp; &nbsp;
                                     <a href
-                                    ="./includes/drank.php/?tapId=<?php echo
+                                    ="./includes/drank.php?tapId=<?php echo
                                     $beer['id']; ?>&amount=.09375">
                                     <div align="center" class="btn">
                                     Glass<br>12 fl oz
                                     </div></a>
                                     &nbsp; &nbsp;
                                     <a href
-                                    ="./includes/drank.php/?tapId=<?php echo
+                                    ="./includes/drank.php?tapId=<?php echo
                                     $beer['id']; ?>&amount=.125">
                                     <div align="center" class="btn">
                                     Pint<br>16 fl oz
                                     </div></a>
                                     &nbsp; &nbsp;
                                     <a href
-                                    ="./includes/drank.php/?tapId=<?php echo
+                                    ="./includes/drank.php?tapId=<?php echo
                                     $beer['id']; ?>&amount=.5">
                                     <div align="center" class="btn">
                                     Growler<br>64 fl oz
@@ -374,7 +374,7 @@
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>" id="<?php echo $beer['id']; ?>">
 								<?php if($config[ConfigNames::ShowTapNumCol]){ ?>
 									<td class="tap-num">
-                    <a href ="./includes/drank.php/?bottleId=<?php echo $beer['id']; ?>">
+                    <a href ="./includes/drank.php?bottleId=<?php echo $beer['id']; ?>">
                     <?php if ($beer['capNumber'] != 0 ){ ?>
                       <span class="bottlecircle" style="background-color: rgba(<?php echo $beer['capRgba'] ?>)">
                       <?php echo $beer['capNumber'] ?>
@@ -400,7 +400,7 @@
 								<td class="name">
 									<h1><?php echo $beer['beername']; ?></h1>
                                     <br/>
-                                    <a class="btn" href="./includes/drank.php/?bottleId=<?php echo $beer['id']; ?>"><span>Bottle</span></a>
+                                    <a class="btn" href="./includes/drank.php?bottleId=<?php echo $beer['id']; ?>"><span>Bottle</span></a>
 								</td>
 							
 								
