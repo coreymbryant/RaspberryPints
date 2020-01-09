@@ -6,7 +6,8 @@
 	&nbsp;
 	<?php
     require_once 'includes/functions.php';
-		$sql="SELECT `name` FROM `users` WHERE username='$_SESSION[myusername]'";
+		$uname = mysqli_real_escape_string($con,$_SESSION['myusername']);
+		$sql="SELECT `name` FROM `users` WHERE username='$uname'";
 		$result=mysqli_query($con,$sql);
 		echo mysqli_result($result, 0, 'name');
 	?>
