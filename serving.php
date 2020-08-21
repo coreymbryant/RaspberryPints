@@ -161,11 +161,9 @@
 						</th>
 						
 						
-						<?php if($config[ConfigNames::ShowKegCol]){ ?>
 							<th class="keg">
 								STARTING<hr>REMAINING
 							</th>
-						<?php } ?>
 					</tr>
 				</thead>
         <?php } ?>
@@ -227,7 +225,6 @@
 							
 								
 								
-								<?php if($config[ConfigNames::ShowKegCol]){ ?>
 									<td class="keg">
 										
 										
@@ -268,7 +265,6 @@
 										</div>
 										<h3><?php echo number_format(($beer['remainAmount'] * 128)); ?> fl oz</h3>
 									</td>
-								<?php } ?>
 							</tr>
 						<?php }else{ ?>
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>">
@@ -297,7 +293,6 @@
 								</td>
 							
 
-								<?php if($config[ConfigNames::ShowKegCol]){ ?>
 									<td class="keg">
 										<h3><?php echo "&nbsp;"; ?></h3>
 										<div class="keg-container">
@@ -305,7 +300,6 @@
 										</div>
 										<h3><?php echo "&nbsp;"; ?></h3>
 									</td>
-								<?php } ?>
 
 							</tr>
 						<?php } ?>
@@ -358,11 +352,9 @@
                 </th>
               <?php } ?>
               
-              <?php if($config[ConfigNames::ShowKegCol]){ ?>
                 <th class="keg">
                   VOLUME<hr>REMAINING
                 </th>
-              <?php } ?>
             </tr>
           </thead>
         <?php } ?>
@@ -405,7 +397,6 @@
 							
 								
 								
-								<?php if($config[ConfigNames::ShowKegCol]){ ?>
 									<td class="keg">
 										
 										<h3><?php echo number_format(($beer['volume'])); ?> oz</h3> 
@@ -431,7 +422,6 @@
 										</div>
 										<h3><?php echo number_format(($beer['remainAmount'])); ?> bottles</h3>
 									</td>
-								<?php } ?>
 
               </tr>
 							<tr class="<?php if($i%2 > 0){ echo 'altrow'; }?>" id="<?php echo $beer['id']; ?>">
